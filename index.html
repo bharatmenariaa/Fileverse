@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fileverse - The ultimate online file processing toolkit with image, PDF, video, and document tools. Process your files online without uploading them to any server.">
+    <title>Fileverse - Online File Processing Tools</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Fileverse</h1>
+                <span class="tagline">Next-Gen File Tools</span>
+            </div>
+            <nav id="main-nav">
+                <button id="menu-toggle" class="menu-toggle">
+                    <i data-feather="menu"></i>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="#image-tools" class="nav-link">Image</a></li>
+                    <li><a href="#pdf-tools" class="nav-link">PDF</a></li>
+                    <li><a href="#video-tools" class="nav-link">Video</a></li>
+                    <li><a href="#document-tools" class="nav-link">Document</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Transform Your Files <span class="highlight">Instantly</span></h2>
+                <p>Powerful file processing tools that work directly in your browser. No uploads, no waiting, no data sharing.</p>
+                <div class="cta-buttons">
+                    <a href="#tools" class="btn btn-primary">Explore Tools</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-bg"></div>
+        </section>
+
+        <section id="tools" class="tools-section">
+            <div class="container">
+                <h2 class="section-title">Our <span class="highlight">Tools</span></h2>
+                
+                <div id="image-tools" class="tool-category">
+                    <h3 class="category-title"><i data-feather="image"></i> Image Tools</h3>
+                    <div class="tools-grid">
+                        <a href="html/image/crop.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="crop"></i></div>
+                            <h4>Crop Image</h4>
+                            <p>Precisely crop and adjust your images</p>
+                        </a>
+                        <a href="html/image/compress.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="minimize-2"></i></div>
+                            <h4>Compress Image</h4>
+                            <p>Reduce file size while maintaining quality</p>
+                        </a>
+                        <a href="html/image/convert.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="refresh-cw"></i></div>
+                            <h4>Convert Format</h4>
+                            <p>Convert between JPG, PNG, WEBP and more</p>
+                        </a>
+                        <a href="html/image/resize.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="maximize"></i></div>
+                            <h4>Resize Image</h4>
+                            <p>Change dimensions and aspect ratio</p>
+                        </a>
+                        <a href="html/image/to-pdf.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="file-text"></i></div>
+                            <h4>Images to PDF</h4>
+                            <p>Convert multiple images into a PDF document</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="pdf-tools" class="tool-category">
+                    <h3 class="category-title"><i data-feather="file"></i> PDF Tools</h3>
+                    <div class="tools-grid">
+                        <a href="html/pdf/to-image.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="image"></i></div>
+                            <h4>PDF to Image</h4>
+                            <p>Extract pages as high-quality images</p>
+                        </a>
+                        <a href="html/pdf/compress.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="minimize-2"></i></div>
+                            <h4>Compress PDF</h4>
+                            <p>Reduce PDF file size for easier sharing</p>
+                        </a>
+                        <a href="html/pdf/unlock.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="unlock"></i></div>
+                            <h4>Unlock PDF</h4>
+                            <p>Remove password protection from PDF files</p>
+                        </a>
+                        <a href="html/pdf/convert.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="refresh-cw"></i></div>
+                            <h4>PDF Convert</h4>
+                            <p>Convert to Word, Excel, or Text formats</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="video-tools" class="tool-category">
+                    <h3 class="category-title"><i data-feather="video"></i> Video Tools</h3>
+                    <div class="tools-grid">
+                        <a href="html/video/compress.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="minimize-2"></i></div>
+                            <h4>Compress Video</h4>
+                            <p>Reduce video file size with minimal quality loss</p>
+                        </a>
+                        <a href="html/video/convert.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="refresh-cw"></i></div>
+                            <h4>Convert Format</h4>
+                            <p>Change between MP4, MOV, and other formats</p>
+                        </a>
+                        <a href="html/video/trim.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="scissors"></i></div>
+                            <h4>Trim Video</h4>
+                            <p>Cut and trim video to the perfect length</p>
+                        </a>
+                        <a href="html/video/to-audio.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="music"></i></div>
+                            <h4>Video to Audio</h4>
+                            <p>Extract audio from videos to MP3 format</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="document-tools" class="tool-category">
+                    <h3 class="category-title"><i data-feather="file-text"></i> Document Tools</h3>
+                    <div class="tools-grid">
+                        <a href="html/document/doc-to-pdf.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="file"></i></div>
+                            <h4>DOC to PDF</h4>
+                            <p>Convert Word documents to PDF format</p>
+                        </a>
+                        <a href="html/document/excel-to-csv.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="grid"></i></div>
+                            <h4>Excel to CSV</h4>
+                            <p>Convert spreadsheets to CSV format</p>
+                        </a>
+                        <a href="html/document/merge.html" class="tool-card">
+                            <div class="tool-icon"><i data-feather="layers"></i></div>
+                            <h4>Merge Documents</h4>
+                            <p>Combine multiple documents into one</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">About <span class="highlight">Fileverse</span></h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Fileverse is a cutting-edge suite of file processing tools that operate entirely within your browser. Unlike traditional online services, your files never leave your device, ensuring maximum privacy and security.</p>
+                        <p>Our tools utilize the latest web technologies to provide professional-grade file processing capabilities without requiring any software installation or cloud uploads.</p>
+                        <div class="features">
+                            <div class="feature">
+                                <i data-feather="shield"></i>
+                                <h4>100% Secure</h4>
+                                <p>Files never leave your browser</p>
+                            </div>
+                            <div class="feature">
+                                <i data-feather="zap"></i>
+                                <h4>Lightning Fast</h4>
+                                <p>No waiting for uploads or processing</p>
+                            </div>
+                            <div class="feature">
+                                <i data-feather="globe"></i>
+                                <h4>Always Available</h4>
+                                <p>Works offline once loaded</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="floating-graphics">
+                            <div class="graphic graphic-1"></div>
+                            <div class="graphic graphic-2"></div>
+                            <div class="graphic graphic-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Fileverse</h2>
+                    <p>Next-Gen File Tools</p>
+                </div>
+                <div class="footer-categories">
+                    <div class="footer-category">
+                        <h3>Image Tools</h3>
+                        <ul>
+                            <li><a href="html/image/crop.html">Crop Image</a></li>
+                            <li><a href="html/image/compress.html">Compress Image</a></li>
+                            <li><a href="html/image/convert.html">Convert Format</a></li>
+                            <li><a href="html/image/resize.html">Resize Image</a></li>
+                            <li><a href="html/image/to-pdf.html">Images to PDF</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>PDF Tools</h3>
+                        <ul>
+                            <li><a href="html/pdf/to-image.html">PDF to Image</a></li>
+                            <li><a href="html/pdf/compress.html">Compress PDF</a></li>
+                            <li><a href="html/pdf/unlock.html">Unlock PDF</a></li>
+                            <li><a href="html/pdf/convert.html">PDF Convert</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>Video Tools</h3>
+                        <ul>
+                            <li><a href="html/video/compress.html">Compress Video</a></li>
+                            <li><a href="html/video/convert.html">Convert Format</a></li>
+                            <li><a href="html/video/trim.html">Trim Video</a></li>
+                            <li><a href="html/video/to-audio.html">Video to Audio</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>Document Tools</h3>
+                        <ul>
+                            <li><a href="html/document/doc-to-pdf.html">DOC to PDF</a></li>
+                            <li><a href="html/document/excel-to-csv.html">Excel to CSV</a></li>
+                            <li><a href="html/document/merge.html">Merge Documents</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Fileverse. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather icons
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+            
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const navList = document.querySelector('.nav-list');
+            
+            menuToggle.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crop your images online with precision using our free tool. Adjust and resize any image without uploading it to any server. Free, secure, and easy to use.">
+    <title>Crop Image Online | Fileverse</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/tools.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../../index.html">
+                    <h1>Fileverse</h1>
+                    <span class="tagline">Next-Gen File Tools</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <button id="menu-toggle" class="menu-toggle">
+                    <i data-feather="menu"></i>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="../../index.html#image-tools" class="nav-link">Image</a></li>
+                    <li><a href="../../index.html#pdf-tools" class="nav-link">PDF</a></li>
+                    <li><a href="../../index.html#video-tools" class="nav-link">Video</a></li>
+                    <li><a href="../../index.html#document-tools" class="nav-link">Document</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-header">
+            <div class="container">
+                <h1 class="tool-title">Crop Image</h1>
+                <p class="tool-description">
+                    Precisely crop any image with our easy-to-use image cropping tool. Adjust the crop area with precision
+                    to get exactly the part of the image you want. Your images are processed entirely in your browser 
+                    and never uploaded to any server.
+                </p>
+            </div>
+        </section>
+
+        <section class="tool-content">
+            <div class="container">
+                <div class="tool-container">
+                    <div class="file-input-container">
+                        <label for="imageFile" class="file-input-label">
+                            <i data-feather="image"></i>
+                            <h3>Select an image to crop</h3>
+                            <p>or drag and drop an image file here</p>
+                            <input type="file" id="imageFile" class="file-input" accept="image/*">
+                        </label>
+                    </div>
+
+                    <div class="canvas-container" style="display: none;">
+                        <div class="canvas-controls">
+                            <label for="outputFormat">Output Format:</label>
+                            <select id="outputFormat" class="option-select">
+                                <option value="image/jpeg">JPEG</option>
+                                <option value="image/png">PNG</option>
+                                <option value="image/webp">WEBP</option>
+                            </select>
+                        </div>
+                        <canvas id="cropCanvas" class="canvas-editor"></canvas>
+                    </div>
+
+                    <div class="preview-container" style="display: none;">
+                        <div class="preview-box">
+                            <div class="preview-header">
+                                <h3 class="preview-title">Original</h3>
+                            </div>
+                            <div class="preview-info">
+                                <div class="preview-info-item">
+                                    <span>Dimensions:</span>
+                                    <span id="originalWidth">0</span> x <span id="originalHeight">0</span>
+                                </div>
+                                <div class="preview-info-item">
+                                    <span>File size:</span>
+                                    <span id="originalSize">0 KB</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-box">
+                            <div class="preview-header">
+                                <h3 class="preview-title">Crop Preview</h3>
+                            </div>
+                            <div class="preview-content">
+                                <canvas id="previewCanvas" class="preview-image"></canvas>
+                            </div>
+                            <div class="preview-info">
+                                <div class="preview-info-item">
+                                    <span>Dimensions:</span>
+                                    <span id="cropWidth">0</span> x <span id="cropHeight">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="cropButton" class="btn btn-primary">
+                            <i data-feather="crop"></i> Crop Image
+                        </button>
+                    </div>
+
+                    <div class="message error-message"></div>
+                    <div class="message success-message"></div>
+
+                    <div class="progress-container" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="progress-text">Processing: 0%</div>
+                    </div>
+
+                    <div class="result-container">
+                        <h3 class="result-title">Cropped Image</h3>
+                        <div class="result-actions">
+                            <!-- Download button will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="related-tools">
+                    <h3 class="related-tools-title">Other Image Tools</h3>
+                    <div class="related-tools-grid">
+                        <a href="compress.html" class="related-tool-card">
+                            <i data-feather="minimize-2"></i>
+                            <h4>Compress Image</h4>
+                            <p>Reduce file size while maintaining quality</p>
+                        </a>
+                        <a href="convert.html" class="related-tool-card">
+                            <i data-feather="refresh-cw"></i>
+                            <h4>Convert Format</h4>
+                            <p>Change between JPG, PNG, WEBP and more</p>
+                        </a>
+                        <a href="resize.html" class="related-tool-card">
+                            <i data-feather="maximize"></i>
+                            <h4>Resize Image</h4>
+                            <p>Change dimensions and aspect ratio</p>
+                        </a>
+                        <a href="to-pdf.html" class="related-tool-card">
+                            <i data-feather="file-text"></i>
+                            <h4>Images to PDF</h4>
+                            <p>Convert multiple images into a PDF</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Fileverse</h2>
+                    <p>Next-Gen File Tools</p>
+                </div>
+                <div class="footer-categories">
+                    <div class="footer-category">
+                        <h3>Image Tools</h3>
+                        <ul>
+                            <li><a href="crop.html">Crop Image</a></li>
+                            <li><a href="compress.html">Compress Image</a></li>
+                            <li><a href="convert.html">Convert Format</a></li>
+                            <li><a href="resize.html">Resize Image</a></li>
+                            <li><a href="to-pdf.html">Images to PDF</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>PDF Tools</h3>
+                        <ul>
+                            <li><a href="../pdf/to-image.html">PDF to Image</a></li>
+                            <li><a href="../pdf/compress.html">Compress PDF</a></li>
+                            <li><a href="../pdf/unlock.html">Unlock PDF</a></li>
+                            <li><a href="../pdf/convert.html">PDF Convert</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>Video Tools</h3>
+                        <ul>
+                            <li><a href="../video/compress.html">Compress Video</a></li>
+                            <li><a href="../video/convert.html">Convert Format</a></li>
+                            <li><a href="../video/trim.html">Trim Video</a></li>
+                            <li><a href="../video/to-audio.html">Video to Audio</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>Document Tools</h3>
+                        <ul>
+                            <li><a href="../document/doc-to-pdf.html">DOC to PDF</a></li>
+                            <li><a href="../document/excel-to-csv.html">Excel to CSV</a></li>
+                            <li><a href="../document/merge.html">Merge Documents</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Fileverse. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../js/common.js"></script>
+    <script src="../../js/image-tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compress PDF files online for free. Reduce PDF file size while maintaining quality. Our PDF compression tool works directly in your browser with no uploads.">
+    <title>Compress PDF Online | Fileverse</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/tools.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../../index.html">
+                    <h1>Fileverse</h1>
+                    <span class="tagline">Next-Gen File Tools</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <button id="menu-toggle" class="menu-toggle">
+                    <i data-feather="menu"></i>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="../../index.html#image-tools" class="nav-link">Image</a></li>
+                    <li><a href="../../index.html#pdf-tools" class="nav-link">PDF</a></li>
+                    <li><a href="../../index.html#video-tools" class="nav-link">Video</a></li>
+                    <li><a href="../../index.html#document-tools" class="nav-link">Document</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-header">
+            <div class="container">
+                <h1 class="tool-title">Compress PDF</h1>
+                <p class="tool-description">
+                    Reduce PDF file size while maintaining reasonable quality. Perfect for sharing via email, 
+                    uploading to websites, or saving storage space. All processing is done in your browser - 
+                    your PDFs stay private and are never uploaded to any server.
+                </p>
+            </div>
+        </section>
+
+        <section class="tool-content">
+            <div class="container">
+                <div class="tool-container">
+                    <div class="file-input-container">
+                        <label for="pdfFile" class="file-input-label">
+                            <i data-feather="file"></i>
+                            <h3>Select a PDF to compress</h3>
+                            <p>or drag and drop a PDF file here</p>
+                            <input type="file" id="pdfFile" class="file-input" accept="application/pdf">
+                        </label>
+                    </div>
+
+                    <div class="preview-container" style="display: none;">
+                        <div class="preview-box">
+                            <div class="preview-header">
+                                <h3 class="preview-title">PDF Information</h3>
+                            </div>
+                            <div class="preview-info">
+                                <div class="preview-info-item">
+                                    <span>Page count:</span>
+                                    <span id="pageCount">0</span>
+                                </div>
+                                <div class="preview-info-item">
+                                    <span>File size:</span>
+                                    <span id="fileSize">0 KB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="options-container" style="display: none;">
+                        <h3 class="options-header">
+                            <i data-feather="settings"></i> Compression Options
+                        </h3>
+                        <div class="option-group">
+                            <label for="compressionLevel" class="option-label">Compression Level:</label>
+                            <select id="compressionLevel" class="option-select">
+                                <option value="0.9">Low Compression (Better Quality)</option>
+                                <option value="0.7" selected>Medium Compression</option>
+                                <option value="0.5">High Compression (Smaller Size)</option>
+                                <option value="0.3">Maximum Compression</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="imageQuality" class="option-label">Image Quality:</label>
+                            <select id="imageQuality" class="option-select">
+                                <option value="0.9">High (90%)</option>
+                                <option value="0.7">Medium (70%)</option>
+                                <option value="0.5" selected>Low (50%)</option>
+                                <option value="0.3">Very Low (30%)</option>
+                            </select>
+                            <p class="option-help">Lower image quality = smaller file size</p>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="compressButton" class="btn btn-primary">
+                            <i data-feather="minimize-2"></i> Compress PDF
+                        </button>
+                    </div>
+
+                    <div class="message error-message"></div>
+                    <div class="message success-message"></div>
+
+                    <div class="progress-container" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="progress-text">Processing: 0%</div>
+                    </div>
+
+                    <div class="result-container">
+                        <h3 class="result-title">Compression Results</h3>
+                        <div class="preview-info" style="margin-bottom: 20px;">
+                            <div class="preview-info-item">
+                                <span>Original size:</span>
+                                <span id="originalSizeResult">-</span>
+                            </div>
+                            <div class="preview-info-item">
+                                <span>Compressed size:</span>
+                                <span id="compressedSizeResult">-</span>
+                            </div>
+                            <div class="preview-info-item">
+                                <span>Reduction:</span>
+                                <span id="reductionResult">-</span>
+                            </div>
+                        </div>
+                        <div class="result-actions">
+                            <!-- Download button will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="related-tools">
+                    <h3 class="related-tools-title">Other PDF Tools</h3>
+                    <div class="related-tools-grid">
+                        <a href="to-image.html" class="related-tool-card">
+                            <i data-feather="image"></i>
+                            <h4>PDF to Image</h4>
+                            <p>Extract pages as high-quality images</p>
+                        </a>
+                        <a href="unlock.html" class="related-tool-card">
+                            <i data-feather="unlock"></i>
+                            <h4>Unlock PDF</h4>
+                            <p>Remove password protection from PDF files</p>
+                        </a>
+                        <a href="convert.html" class="related-tool-card">
+                            <i data-feather="refresh-cw"></i>
+                            <h4>PDF Convert</h4>
+                            <p>Convert to Word, Excel, or Text formats</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Fileverse</h2>
+                    <p>Next-Gen File Tools</p>
+                </div>
+                <div class="footer-categories">
+                    <div class="footer-category">
+                        <h3>Image Tools</h3>
+                        <ul>
+                            <li><a href="../image/crop.html">Crop Image</a></li>
+                            <li><a href="../image/compress.html">Compress Image</a></li>
+                            <li><a href="../image/convert.html">Convert Format</a></li>
+                            <li><a href="../image/resize.html">Resize Image</a></li>
+                            <li><a href="../image/to-pdf.html">Images to PDF</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>PDF Tools</h3>
+                        <ul>
+                            <li><a href="to-image.html">PDF to Image</a></li>
+                            <li><a href="compress.html">Compress PDF</a></li>
+                            <li><a href="unlock.html">Unlock PDF</a></li>
+                            <li><a href="convert.html">PDF Convert</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>Video Tools</h3>
+                        <ul>
+                            <li><a href="../video/compress.html">Compress Video</a></li>
+                            <li><a href="../video/convert.html">Convert Format</a></li>
+                            <li><a href="../video/trim.html">Trim Video</a></li>
+                            <li><a href="../video/to-audio.html">Video to Audio</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>Document Tools</h3>
+                        <ul>
+                            <li><a href="../document/doc-to-pdf.html">DOC to PDF</a></li>
+                            <li><a href="../document/excel-to-csv.html">Excel to CSV</a></li>
+                            <li><a href="../document/merge.html">Merge Documents</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Fileverse. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+        // Make jsPDF available globally
+        window.jspdf = window.jspdf;
+    </script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/pdf-tools.js"></script>
+</body>
+</html>

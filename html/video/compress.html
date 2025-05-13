@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compress videos online to reduce file size while maintaining quality. Process videos in your browser without uploading to any server. Free, secure, and easy to use.">
+    <title>Compress Video Online | Fileverse</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/tools.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../../index.html">
+                    <h1>Fileverse</h1>
+                    <span class="tagline">Next-Gen File Tools</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <button id="menu-toggle" class="menu-toggle">
+                    <i data-feather="menu"></i>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="../../index.html#image-tools" class="nav-link">Image</a></li>
+                    <li><a href="../../index.html#pdf-tools" class="nav-link">PDF</a></li>
+                    <li><a href="../../index.html#video-tools" class="nav-link">Video</a></li>
+                    <li><a href="../../index.html#document-tools" class="nav-link">Document</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-header">
+            <div class="container">
+                <h1 class="tool-title">Compress Video</h1>
+                <p class="tool-description">
+                    Reduce video file size while maintaining reasonable quality. Perfect for sharing on social media,
+                    messaging apps, or email. All processing happens in your browser - your videos stay private and
+                    are never uploaded to any server.
+                </p>
+            </div>
+        </section>
+
+        <section class="tool-content">
+            <div class="container">
+                <div class="tool-container">
+                    <div class="file-input-container">
+                        <label for="videoFile" class="file-input-label">
+                            <i data-feather="video"></i>
+                            <h3>Select a video to compress</h3>
+                            <p>or drag and drop a video file here</p>
+                            <input type="file" id="videoFile" class="file-input" accept="video/*">
+                        </label>
+                    </div>
+
+                    <div class="preview-container" style="display: none;">
+                        <div class="preview-box">
+                            <div class="preview-header">
+                                <h3 class="preview-title">Video Preview</h3>
+                            </div>
+                            <div class="preview-content" id="videoPreview">
+                                <!-- Video preview will be added here -->
+                            </div>
+                            <div class="preview-info">
+                                <div class="preview-info-item">
+                                    <span>Duration:</span>
+                                    <span id="videoDuration">00:00</span>
+                                </div>
+                                <div class="preview-info-item">
+                                    <span>Resolution:</span>
+                                    <span id="videoResolution">0x0</span>
+                                </div>
+                                <div class="preview-info-item">
+                                    <span>File size:</span>
+                                    <span id="videoSize">0 KB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="options-container" style="display: none;">
+                        <h3 class="options-header">
+                            <i data-feather="settings"></i> Compression Options
+                        </h3>
+                        <div class="option-group">
+                            <label for="preset" class="option-label">Compression Preset:</label>
+                            <select id="preset" class="option-select">
+                                <option value="low">High Compression (Lower Quality)</option>
+                                <option value="medium" selected>Medium Compression</option>
+                                <option value="high">Low Compression (Higher Quality)</option>
+                                <option value="custom">Custom Settings</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="resolution" class="option-label">Resolution:</label>
+                            <select id="resolution" class="option-select">
+                                <option value="original">Original Resolution</option>
+                                <option value="1080p">1080p (1920x1080)</option>
+                                <option value="720p" selected>720p (1280x720)</option>
+                                <option value="480p">480p (854x480)</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="bitrate" class="option-label">Bitrate (kbps):</label>
+                            <input type="number" id="bitrate" class="option-input" value="1000" min="100" max="10000">
+                            <p class="option-help">Lower bitrate = smaller file size, but lower quality</p>
+                        </div>
+                        <div class="option-group">
+                            <div class="preview-info-item">
+                                <span>Estimated output size:</span>
+                                <span id="estimatedSize">Calculating...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="compressButton" class="btn btn-primary">
+                            <i data-feather="minimize-2"></i> Compress Video
+                        </button>
+                    </div>
+
+                    <div class="message error-message"></div>
+                    <div class="message success-message"></div>
+
+                    <div class="progress-container" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="progress-text">Processing: 0%</div>
+                    </div>
+
+                    <div class="result-container">
+                        <h3 class="result-title">Compression Results</h3>
+                        <div class="preview-info" style="margin-bottom: 20px;">
+                            <div class="preview-info-item">
+                                <span>Original size:</span>
+                                <span id="originalSizeResult">-</span>
+                            </div>
+                            <div class="preview-info-item">
+                                <span>Compressed size:</span>
+                                <span id="compressedSizeResult">-</span>
+                            </div>
+                            <div class="preview-info-item">
+                                <span>Reduction:</span>
+                                <span id="reductionResult">-</span>
+                            </div>
+                        </div>
+                        <div class="result-actions">
+                            <!-- Download button will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="related-tools">
+                    <h3 class="related-tools-title">Other Video Tools</h3>
+                    <div class="related-tools-grid">
+                        <a href="convert.html" class="related-tool-card">
+                            <i data-feather="refresh-cw"></i>
+                            <h4>Convert Format</h4>
+                            <p>Change between MP4, MOV, and other formats</p>
+                        </a>
+                        <a href="trim.html" class="related-tool-card">
+                            <i data-feather="scissors"></i>
+                            <h4>Trim Video</h4>
+                            <p>Cut and trim video to the perfect length</p>
+                        </a>
+                        <a href="to-audio.html" class="related-tool-card">
+                            <i data-feather="music"></i>
+                            <h4>Video to Audio</h4>
+                            <p>Extract audio from videos to MP3 format</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Fileverse</h2>
+                    <p>Next-Gen File Tools</p>
+                </div>
+                <div class="footer-categories">
+                    <div class="footer-category">
+                        <h3>Image Tools</h3>
+                        <ul>
+                            <li><a href="../image/crop.html">Crop Image</a></li>
+                            <li><a href="../image/compress.html">Compress Image</a></li>
+                            <li><a href="../image/convert.html">Convert Format</a></li>
+                            <li><a href="../image/resize.html">Resize Image</a></li>
+                            <li><a href="../image/to-pdf.html">Images to PDF</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>PDF Tools</h3>
+                        <ul>
+                            <li><a href="../pdf/to-image.html">PDF to Image</a></li>
+                            <li><a href="../pdf/compress.html">Compress PDF</a></li>
+                            <li><a href="../pdf/unlock.html">Unlock PDF</a></li>
+                            <li><a href="../pdf/convert.html">PDF Convert</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>Video Tools</h3>
+                        <ul>
+                            <li><a href="compress.html">Compress Video</a></li>
+                            <li><a href="convert.html">Convert Format</a></li>
+                            <li><a href="trim.html">Trim Video</a></li>
+                            <li><a href="to-audio.html">Video to Audio</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-category">
+                        <h3>Document Tools</h3>
+                        <ul>
+                            <li><a href="../document/doc-to-pdf.html">DOC to PDF</a></li>
+                            <li><a href="../document/excel-to-csv.html">Excel to CSV</a></li>
+                            <li><a href="../document/merge.html">Merge Documents</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Fileverse. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize FFmpeg namespace
+        window.FFmpeg = { createFFmpeg: ffmpeg.createFFmpeg, fetchFile: ffmpeg.fetchFile };
+    </script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/video-tools.js"></script>
+</body>
+</html>
